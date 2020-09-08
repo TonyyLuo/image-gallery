@@ -9,8 +9,6 @@ import GalleryTabs from "./comps/GalleryTabs";
 function App() {
   const { docs } = useFirestore("galleries", "asc");
 
-  const [selectedImg, setSelectedImg] = useState(null);
-
   return (
     <div className="App">
       <Title />
