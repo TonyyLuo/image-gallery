@@ -3,13 +3,13 @@ import useFirestore from "../hooks/useFirestore";
 import { motion } from "framer-motion";
 import { projectFirestore, projectStorage } from "../firebase/config";
 
-const ImageGrid = ({ setSelectedImg }) => {
-  const { docs } = useFirestore("gallery1", "desc");
+const ImageGrid = ({ setSelectedImg, galleryId }) => {
+  const { docs } = useFirestore(galleryId, "desc");
 
   const deleteImage = (event) => {
     if (event.target.classList.contains("delete-img")) {
       let id = event.target.parentElement.getAttribute("data-key");
-      projectFirestore.collection("gallery1").doc(id).delete();
+      projectFirestore.collection(galleryId).doc(id).delete();
 
       let delUrl = event.target.parentElement.getAttribute("data-url");
       let deleteRef = projectStorage.refFromURL(delUrl);
