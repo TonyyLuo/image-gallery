@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useFirestore from "../hooks/useFirestore";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -18,7 +19,7 @@ const GalleryTabs = ({ docs }) => {
   const [value, setValue] = useState(0);
   const [selectedImg, setSelectedImg] = useState(null);
 
-  const [galleryId, setGalleryId] = useState("Sketches");
+  const [galleryId, setGalleryId] = useState("gallery1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -28,8 +29,6 @@ const GalleryTabs = ({ docs }) => {
 
   return (
     <div>
-      <h2>{galleryId}</h2>
-
       <UploadForm galleryId={galleryId} />
       <Paper className={classes.root}>
         <Tabs
