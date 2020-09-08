@@ -1,11 +1,10 @@
 import React from "react";
-import App from "../App";
 import useFirestore from "../hooks/useFirestore";
 import { motion } from "framer-motion";
 import { projectFirestore, projectStorage } from "../firebase/config";
 
 const ImageGrid = ({ setSelectedImg }) => {
-  const { docs } = useFirestore("gallery1");
+  const { docs } = useFirestore("gallery1", "desc");
 
   const deleteImage = (event) => {
     if (event.target.classList.contains("delete-img")) {
