@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GalleryTabs = ({ docs }) => {
+const Gallery = ({ docs }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [selectedImg, setSelectedImg] = useState(null);
@@ -40,13 +40,14 @@ const GalleryTabs = ({ docs }) => {
         </Tabs>
       </Paper>
 
+      <UploadForm galleryId={galleryId} />
+
       <ImageGrid setSelectedImg={setSelectedImg} galleryId={galleryId} />
       {selectedImg && (
         <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
       )}
-      <UploadForm galleryId={galleryId} />
     </div>
   );
 };
 
-export default GalleryTabs;
+export default Gallery;
