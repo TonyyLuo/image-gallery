@@ -21,9 +21,9 @@ const UploadForm = ({ galleryId }) => {
   };
 
   return (
-    <form>
-      <label>
-        <input type="file" onChange={changeHandler} />
+    <form className="uploadForm">
+      <label className="uploadLabel">
+        <input className="uploadInput" type="file" onChange={changeHandler} />
         <span>+</span>
       </label>
       <div className="output">

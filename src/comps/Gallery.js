@@ -6,6 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
 import Modal from "./Modal";
+import AddGalleryForm from "./AddGalleryForm";
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +28,10 @@ const Gallery = ({ docs }) => {
 
   return (
     <div>
-      <h2>{galleryId}</h2>
+      <h2 id="gallerytitle">{galleryId}</h2>
+
+      <AddGalleryForm />
+
       <Paper className={classes.root}>
         <Tabs
           value={value}
