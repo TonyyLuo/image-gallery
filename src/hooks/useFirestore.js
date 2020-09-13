@@ -14,6 +14,8 @@ const useFirestore = (collection, sortOrder) => {
           documents.push({ ...doc.data(), id: doc.id });
         });
         setDocs(documents);
+        var source = snap.metadata.fromCache ? "local cache" : "server";
+        console.log(source);
       });
 
     return () => unsub();
