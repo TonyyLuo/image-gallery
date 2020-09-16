@@ -8,9 +8,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { projectFirestore, timestamp } from "../firebase/config";
 
-export default function AddGalleryForm() {
+export default function LoginButton() {
   const [open, setOpen] = useState(false);
-  const [galleryName, setGalleryName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState("");
 
   const handleClickOpen = () => {
@@ -18,16 +19,19 @@ export default function AddGalleryForm() {
   };
 
   const handleNewGallery = () => {
-    if (galleryName !== "") {
-      const collectionRef = projectFirestore.collection("galleries");
-      const createdAt = timestamp();
-      const name = galleryName;
-      collectionRef.add({ name, createdAt });
-      setErrorText("");
-      setOpen(false);
-    } else {
-      setErrorText("Please enter a gallery name");
-    }
+    // if (galleryName !== "") {
+    //   const collectionRef = projectFirestore.collection("galleries");
+    //   const createdAt = timestamp();
+    //   const name = galleryName;
+    //   collectionRef.add({ name, createdAt });
+    //   setErrorText("");
+    //   setOpen(false);
+    // } else {
+    //   setErrorText("Please enter a gallery name");
+    // }
+    console.log(email);
+    console.log(password);
+    setOpen(false);
   };
 
   const handleClose = () => {
@@ -38,24 +42,31 @@ export default function AddGalleryForm() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add New Gallery
+        Login
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Add New Gallery</DialogTitle>
+        <DialogTitle id="form-dialog-title">Login</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Enter a name for the new gallery and upload the first image.
-          </DialogContentText>
           <TextField
             required
             autoFocus
             margin="dense"
-            label="Gallery Name"
-            onChange={(e) => setGalleryName(e.target.value)}
+            label="Email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+          />
+          <TextField
+            required
+            autoFocus
+            margin="dense"
+            label="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
             fullWidth
           />
           <DialogContentText id="errorText">{errorText}</DialogContentText>
