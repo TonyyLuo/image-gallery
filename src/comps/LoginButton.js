@@ -6,7 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { projectFirestore, timestamp } from "../firebase/config";
+import { projectAuth } from "../firebase/config";
 
 export default function LoginButton() {
   const [open, setOpen] = useState(false);
@@ -29,9 +29,10 @@ export default function LoginButton() {
     // } else {
     //   setErrorText("Please enter a gallery name");
     // }
-    console.log(email);
-    console.log(password);
-    setOpen(false);
+    projectAuth.signInWithEmailAndPassword(email, password).then((cred) => {
+      console.log(cred.user);
+      setOpen(false);
+    });
   };
 
   const handleClose = () => {
